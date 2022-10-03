@@ -1,0 +1,58 @@
+[
+    {
+        "_id" : "507f191e810c19729de860ea",
+        "userId" : "507f191efrtg19729de860ea",
+        "name" : "Back & Biceps",
+        "date" : "2021-11-01T19:06:28.243+00:00",
+        "exercises" : [
+            {
+                "exerciseName": "Pull-Ups"
+            },
+            {
+                "exerciseName": "EZ Bar Curls"
+            },
+            {
+                "exerciseName": "Dumbbell Hammer Curls"
+            },
+            {
+                "exerciseName": "Dumbbell Shrugs"
+            }
+        ]
+    },
+    {
+        "userId" : "507f191efrtg19729de860ea",
+        "workoutQuality" : 5,
+        "exercises" : [
+            {
+                "exerciseName" : "Pull-Ups",
+                "sets" : [
+                    {
+                        "setNumber" : 1,
+                        "reps" : 8,
+                        "weight" : 60
+                    },
+                    {
+                        "setNumber" : 2,
+                        "reps" : 8,
+                        "weight" : 60
+                    }
+                ]
+            },
+            {
+                "exerciseName" : "EZ Bar Curls",
+                "sets" : [
+                    {
+                        "setNumber" : 1,
+                        "reps" : 8,
+                        "weight" : 60
+                    },
+                    {
+                        "setNumber" : 2,
+                        "reps" : 8,
+                        "weight" : 60
+                    }
+                ]
+            }
+        ]
+    }
+]
