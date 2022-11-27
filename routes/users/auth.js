@@ -71,7 +71,8 @@ router.post('/register', async (req, res) => {
         surname: req.body.surname,
         isAdmin: req.body.isAdmin,
         email: req.body.email,
-        password: hashPassword
+        password: hashPassword,
+        completedMunros: []
     });
 
     try {
