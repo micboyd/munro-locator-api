@@ -1,7 +1,7 @@
 const router = require('express').Router();
 
+const User = require("../../model/users/UserInstance");
 const Munro = require('../../model/munro/Munro');
-const User = require('../../model/users/UserInstance');
 
 
 router.get('/all-munros', async (req, res) => {
@@ -11,52 +11,50 @@ router.get('/all-munros', async (req, res) => {
     res.status(200).json(allMunros);
 });
 
-router.get('/all-complete-munros/:userId', async (req, res) => {
-
-    const allCompleteMunros = await CompletedMunro.find(
-        { 
-            userId: req.params.userId
-        }
-    );
-
-    res.status(200).json(allCompleteMunros);
-    
-});
-
-// Get incomplete munros
 router.get('/all-incomplete-munros/:userId', async (req, res) => {
 
-    const allMunros = await Munro.find();
-
-    const user = await User.find(
-        { 
-            userId: req.params.userId
+    const user = await User.findOne(
+        {
+            _id: req.params.userId
         }
     );
 
-    console.log(user.completeMunros);
+    const allIncompleteMunros = await Munro.find(
+        { 
+            _id: { $nin: user.completedMunros } 
+        }
+    );
 
     res.status(200).json(allIncompleteMunros);
 });
 
-// Add Complete Munro
-router.post('/add-complete-munro', async (req, res) => {
+router.get('/all-complete-munros/:userId', async (req, res) => {
 
-    const completeMunroInstance = await CompletedMunro.create(req.body);
-
-    res.status(200).json(completeMunroInstance);
-});
-
-// Delete Complete Munro
-router.delete('/delete-complete-munro/:completeMunroId', async (req, res) => {    
-
-    const deleteCompleteMunro = await CardioInstance.deleteOne(
-        { 
-            munroId: req.params.completeMunroId
+    const user = await User.findOne(
+        {
+            _id: req.params.userId
         }
     );
 
-    res.status(200).json(deleteCompleteMunro);
+    const allCompleteMunros = await Munro.find(
+        { 
+            _id: { $in: user.completedMunros } 
+        }
+    );
+
+    res.status(200).json(allCompleteMunros);
+});
+
+router.put('/update-complete-munros/:userId', async (req, res) => {
+
+    const updateCompleteMunros =  await User.updateOne(
+        { 
+            _id: req.params.userId 
+        },
+        req.body
+    )
+
+    res.status(200).json(updateCompleteMunros);
 });
 
 module.exports = router;
