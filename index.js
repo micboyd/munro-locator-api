@@ -31,7 +31,9 @@ app.use(function (req, res, next) {
 
     // Website you wish to allow to connect
     const allowedOrigins = [
-        'http://localhost:4200'
+        'http://localhost:4200',
+        'https://munrolocator.com',
+        'https://www.munrolocator.com'
     ];
 
     const origin = req.headers.origin;
